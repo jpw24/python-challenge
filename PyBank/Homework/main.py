@@ -36,6 +36,13 @@ with open(csvpath, newline="") as csvfile:
     maxdmonth=""
     
     
+    #change in profit/loss
+    delta=0
+    prev=0
+
+    #sum of change in average p/l
+    totaldelta=0
+
     #Output stuffffff
     print("Financial Analysis")
 # Loop through the file
@@ -49,20 +56,26 @@ with open(csvpath, newline="") as csvfile:
             
             #increment the net profit or loss
             netpl=netpl+float(row[1])
-            
-            #test to see if this is greater than the max, if so reassign the max
-            if float(row[1])>maxincrease:
-                maximonth=row[0]
-                maxincrease=float(row[1])
-            #test to see if this is less than the min, if so reassign the min
-            if float(row[1])<maxdecrease:
-                maxdmonth=row[0]
-                maxdecrease=float(row[1])
+            if month==1:
+                prev=float(row[1])
+                next
+            else:
+                delta=float(row[1])-prev
+                #test to see if this is greater than the max, if so reassign the max
+                if float(delta)>maxincrease:
+                    maximonth=row[0]
+                    maxincrease=float(delta)
+                #test to see if this is less than the min, if so reassign the min
+                if float(delta)<maxdecrease:
+                    maxdmonth=row[0]
+                    maxdecrease=float(delta)
+                totaldelta+=delta
+                prev=float(row[1])
     #output everything
     print("----------------------------")
     print("Total Months: "+ str(month))
     print("Total: $"+"{:.0f}".format(netpl))
-    print("Average Change: $" +"{:.2f}".format(netpl/month))
+    print("Average Change: $" +"{:.2f}".format(totaldelta/(month-1)))
     print("Greatest Increase in Profits: "+str(maximonth)+" ($"+"{:.0f}".format(maxincrease)+")")
     print("Greatest Decrease in Profits: "+str(maxdmonth)+" ($"+"{:.0f}".format(maxdecrease)+")")
     
@@ -80,7 +93,7 @@ with open(file_to_output, "w") as txt_file:
     txt_file.write("----------------------------\n")
     txt_file.write("Total Months: "+ str(month)+"\n")
     txt_file.write("Total: $"+"{:.0f}".format(netpl)+"\n")
-    txt_file.write("Average Change: $" +"{:.2f}".format(netpl/month)+"\n")
+    txt_file.write("Average Change: $" +"{:.2f}".format(totaldelta/(month-1))+"\n")
     txt_file.write("Greatest Increase in Profits: "+str(maximonth)+" ($"+"{:.0f}".format(maxincrease)+")"+"\n")
     txt_file.write("Greatest Decrease in Profits: "+str(maxdmonth)+" ($"+"{:.0f}".format(maxdecrease)+")"+"\n")
 

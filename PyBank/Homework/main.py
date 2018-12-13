@@ -60,10 +60,10 @@ with open(csvpath, newline="") as csvfile:
     #output everything
     print("----------------------------")
     print("Total Months: "+ str(month))
-    print("Total: $"+str(netpl))
-    print("Average Change: $" +str((netpl/month)))
-    print("Greatest Increase in Profits: "+str(maximonth)+" ($"+str(maxincrease)+")")
-    print("Greatest Decrease in Profits: "+str(maxdmonth)+" ($"+str(maxdecrease)+")")
+    print("Total: $"+"{:.0f}".format(netpl))
+    print("Average Change: $" +"{:.2f}".format(netpl/month))
+    print("Greatest Increase in Profits: "+str(maximonth)+" ($"+"{:.0f}".format(maxincrease)+")")
+    print("Greatest Decrease in Profits: "+str(maxdmonth)+" ($"+"{:.0f}".format(maxdecrease)+")")
     
     #write to the output text file
     

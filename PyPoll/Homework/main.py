@@ -53,7 +53,7 @@ with open(csvpath, newline="") as csvfile:
     
     #printing the candidates with all of their vote counts and percentages
     for i in range(len(candidate_list)):
-        print(candidate_list[i]+": "+"{0:.3%}".format(candidate_votes[i]/totalvotes)+" ("+str(candidate_votes[i])+")")
+        print(candidate_list[i]+": "+"{0:.3%}".format((candidate_votes[i]-1)/totalvotes)+" ("+str(candidate_votes[i]-1)+")")
     print("-------------------------")
     print("Winner: "+maxm)
     print("-------------------------")
@@ -66,7 +66,7 @@ with open(file_to_output, "w") as txt_file:
     
     #printing the candidates with all of their vote counts and percentages
     for i in range(len(candidate_list)):
-        txt_file.write(candidate_list[i]+": "+"{0:.3%}".format(candidate_votes[i]/totalvotes)+" ("+str(candidate_votes[i])+")"+"\n")
+        txt_file.write(candidate_list[i]+": "+"{0:.3%}".format((candidate_votes[i]-1)/totalvotes)+" ("+str(candidate_votes[i]-1)+")"+"\n")
     txt_file.write("-------------------------"+"\n")
     txt_file.write("Winner: "+maxm+"\n")
     txt_file.write("-------------------------"+"\n")

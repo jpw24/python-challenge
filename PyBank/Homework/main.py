@@ -11,6 +11,7 @@ import csv
 
 # Set path for file
 csvpath = os.path.join("..","Resources","budget_data.csv")
+file_to_output = os.path.join("..","Output", "Output.txt")
 
 
 
@@ -66,6 +67,21 @@ with open(csvpath, newline="") as csvfile:
     print("Greatest Decrease in Profits: "+str(maxdmonth)+" ($"+"{:.0f}".format(maxdecrease)+")")
     
     #write to the output text file
-    
-    
+
+# logic and code
+
+# do stuff, stuff, and more stuff
+
+# prepare your final output data frame
+
+# Export the results to text file
+with open(file_to_output, "w") as txt_file:
+    txt_file.write("Financial Analysis\n")
+    txt_file.write("----------------------------\n")
+    txt_file.write("Total Months: "+ str(month)+"\n")
+    txt_file.write("Total: $"+"{:.0f}".format(netpl)+"\n")
+    txt_file.write("Average Change: $" +"{:.2f}".format(netpl/month)+"\n")
+    txt_file.write("Greatest Increase in Profits: "+str(maximonth)+" ($"+"{:.0f}".format(maxincrease)+")"+"\n")
+    txt_file.write("Greatest Decrease in Profits: "+str(maxdmonth)+" ($"+"{:.0f}".format(maxdecrease)+")"+"\n")
+
     

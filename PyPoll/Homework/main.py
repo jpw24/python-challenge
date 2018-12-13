@@ -11,6 +11,7 @@ import csv
 
 # Set path for file
 csvpath = os.path.join("..","Resources","election_data.csv")
+file_to_output = os.path.join("..","Output", "Output.txt")
 
 # Open the CSV
 with open(csvpath, newline="") as csvfile:
@@ -57,5 +58,15 @@ with open(csvpath, newline="") as csvfile:
     print("Winner: "+maxm)
     print("-------------------------")
     
+with open(file_to_output, "w") as txt_file:
+    txt_file.write("Election Results"+"\n")
+    txt_file.write("-------------------------"+"\n")           
+    txt_file.write("Total Votes: "+str(totalvotes)+"\n")
+    txt_file.write("-------------------------"+"\n")
     
-                
+    #printing the candidates with all of their vote counts and percentages
+    for i in range(len(candidate_list)):
+        txt_file.write(candidate_list[i]+": "+"{0:.3%}".format(candidate_votes[i]/totalvotes)+" ("+str(candidate_votes[i])+")"+"\n")
+    txt_file.write("-------------------------"+"\n")
+    txt_file.write("Winner: "+maxm+"\n")
+    txt_file.write("-------------------------"+"\n")
